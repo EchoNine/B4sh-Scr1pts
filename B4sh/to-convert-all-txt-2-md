@@ -1,0 +1,12 @@
+
+
+
+You can do the following in Terminal:
+
+
+find . -iname "*.txt" -exec bash -c 'mv "$0" "${0%\.txt}.md"' {} \;
+
+
+
+This will recursively rename all .txt files in the current directory to .md.
+Note: this command works with any extension via the terminal shell ...

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Detects if server accepts connections
+
+
+################################################################################
+################################################################################
+
+## foobar.com           prompt: passwd
+## stackoverflow.com    prompt: none
+## github.com           prompt: priv key denied
+
+declare -a servers=(foobar.com stackoverflow.com github.com) # change this :)
+declare -i port=22
+
+for server in ${servers[@]} ; do
+  nc -w 3 -z $server $port && {
+    echo Success: ${server}:${port}
+  } || {
+    echo Failure: ${server}:${port}
+  }
+done

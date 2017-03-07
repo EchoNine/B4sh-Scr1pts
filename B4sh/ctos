@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+echo ""
+echo "\033[36m                         ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+echo "\033[36m                         ▓▓▓         ▓▓▓▓▓▓         ▓▓▓▓"
+echo "\033[36m                         ▓▓    ▓▓▓▓    ▓▓▓   ▓▓▓▓▓    ▓▓"
+echo "\033[36m    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ▓▓▓▓▓▓▓▓   ▓▓   ▓▓▓▓▓▓   ▓▓"
+echo "\033[36m    ▓▓▓      ▓▓             ▓▓▓▓▓▓▓▓▓▓   ▓    ▓▓▓▓▓▓▓▓▓▓"
+echo "\033[36m    ▓▓  ▓▓▓▓   ▓▓▓▓  ▓▓▓▓   ▓▓▓▓▓▓▓▓▓▓   ▓▓        ▓▓▓▓▓"
+echo "\033[36m    ▓  ▓▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓   ▓▓▓▓▓▓▓▓▓▓   ▓▓▓▓▓▓       ▓▓"
+echo "\033[36m    ▓  ▓▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓   ▓▓▓▓▓▓▓▓▓▓   ▓▓▓▓▓▓▓▓▓▓   ▓▓"
+echo "\033[36m    ▓  ▓▓▓▓▓▓  ▓▓▓▓  ▓▓▓▓▓   ▓▓▓▓▓▓▓▓   ▓   ▓▓▓▓▓▓▓▓  ▓▓"
+echo "\033[36m    ▓  ▓▓▓▓▓   ▓▓▓▓  ▓▓▓▓▓▓   ▓▓▓▓▓▓   ▓▓▓   ▓▓▓▓▓▓   ▓▓"
+echo "\033[36m    ▓▓       ▓▓▓▓▓▓  ▓▓▓▓▓▓▓          ▓▓▓▓▓          ▓▓▓"
+echo "\033[36m    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+echo "\033[36m                   ▓C0NN3CT10N▓1S▓P0W3R▓                "
+echo ""
+echo "\033[32m     + Self-Decrypting Shell Scripts - By: A-Al-Dallal +"
+echo ""
+
+ctos() {
+	local ct_version="v0.0.1"
+	local ct_interp="sh -"
+
+	if [ "$#" -eq "0" ] || [ "$#" -gt "3" ]; then
+		echo ""
+		echo "                      + ctOS - $ct_version +"
+		echo ""
+		echo "\033[33m      Usage: $0 \033[36mPAYLOAD_FILE \033[34m OUTPUT_FILE \033[33m[interpreter]"
+		echo "\033[33m      E.g  : $0 \033[36mahmed.sh \033[34mabcd.sh \033[33m[intr. selected is 'shell based' - *.sh]"
+		echo "\033[31m      I.e  : '\033[36mahmed.sh\033[31m' file to encrypt - '\033[34mabcd.sh\033[31m' new encrypted output file you rename"
+		echo ""		
+		echo "    \033[35m  Default interpreter is \"$ct_interp\", but can be set to anything (..?)"
+		echo "    \033[35m  (e.g. \"python\", \"ruby\", \"perl\", .. etc)"
+		echo ""
+		echo "\033[36m      Disclaimer: for Linux OS & Mac OS only"
+		echo ""
+		exit 1
+	fi
+
+	{
+		echo "#!/bin/sh"
+		echo "# ctos loader - $ct_version"
+		echo "{ base64 --decode | GPG_AGENT_INFO= gpg -q -d | ${3:-$ct_interp} \$@ ; } <<."
+		GPG_AGENT_INFO= gpg -q -c --cipher-algo=AES256 | base64
+		echo "."
+	} < $1 > $2
+
+	chmod +x $2
+}
+
+ctos "$@"
