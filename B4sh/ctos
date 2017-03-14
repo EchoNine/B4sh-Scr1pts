@@ -15,11 +15,11 @@ echo "\033[36m    ▓▓       ▓▓▓▓▓▓  ▓▓▓▓▓▓▓        
 echo "\033[36m    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
 echo "\033[36m                   ▓C0NN3CT10N▓1S▓P0W3R▓                "
 echo ""
-echo "\033[32m     + Self-Decrypting Shell Scripts - By: A-Al-Dallal +"
+echo "\033[32m     + Auto-Decrypt-ng Shell Scripts - By: A-Al-Dallal +"
 echo ""
 
 ctos() {
-	local ct_version="v0.0.1"
+	local ct_version="v1.1"
 	local ct_interp="sh -"
 
 	if [ "$#" -eq "0" ] || [ "$#" -gt "3" ]; then
